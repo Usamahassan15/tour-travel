@@ -7,9 +7,11 @@ interface Props {
   description?: ReactNode;
   align?: "left" | "center";
   action?: ReactNode;
+  variant?: "light" | "dark";
 }
 
-export function SectionHeading({ eyebrow, title, description, align = "left", action }: Props) {
+export function SectionHeading({ eyebrow, title, description, align = "left", action, variant = "light" }: Props) {
+  const dark = variant === "dark";
   return (
     <div
       className={
@@ -26,12 +28,12 @@ export function SectionHeading({ eyebrow, title, description, align = "left", ac
         transition={{ duration: 0.6 }}
         className={align === "center" ? "max-w-2xl" : "max-w-2xl"}
       >
-        {eyebrow && <p className="eyebrow text-cobalt">{eyebrow}</p>}
-        <h2 className="mt-3 text-balance font-serif text-4xl leading-[1.05] tracking-tight md:text-5xl lg:text-[56px]">
+        {eyebrow && <p className={"eyebrow " + (dark ? "text-amber-brand" : "text-cobalt")}>{eyebrow}</p>}
+        <h2 className={"mt-3 text-balance font-serif text-4xl leading-[1.05] tracking-tight md:text-5xl lg:text-[56px] " + (dark ? "text-white" : "")}>
           {title}
         </h2>
         {description && (
-          <p className="mt-4 max-w-[56ch] text-pretty text-midnight/60">{description}</p>
+          <p className={"mt-4 max-w-[56ch] text-pretty " + (dark ? "text-white/60" : "text-midnight/60")}>{description}</p>
         )}
       </motion.div>
       {action}
