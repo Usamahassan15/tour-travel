@@ -59,29 +59,49 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-midnight: var(--midnight);
+  --color-cobalt: var(--cobalt);
+  --color-cyan-brand: var(--cyan-brand);
+  --color-amber-brand: var(--amber-brand);
+  --color-success-brand: var(--success-brand);
+  --color-canvas: var(--canvas);
+  --color-ink: var(--ink);
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --shadow-luxe: 0 30px 60px -30px oklch(0.15 0.05 265 / 0.35), 0 8px 24px -12px oklch(0.15 0.05 265 / 0.18);
+  --shadow-card: 0 1px 2px oklch(0.15 0.05 265 / 0.04), 0 8px 24px -12px oklch(0.15 0.05 265 / 0.12);
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  /* Brand palette */
+  --midnight: oklch(0.204 0.048 265.9);      /* #0F172A */
+  --cobalt:   oklch(0.554 0.213 261.4);      /* #2563EB */
+  --cyan-brand: oklch(0.735 0.128 213.6);    /* #06B6D4 */
+  --amber-brand: oklch(0.788 0.161 71.8);    /* #F59E0B */
+  --success-brand: oklch(0.731 0.203 145.2); /* #22C55E */
+  --canvas: oklch(0.984 0.005 247.9);        /* #F8FAFC */
+  --ink: oklch(0.28 0.03 265);
+
+  --background: var(--canvas);
+  --foreground: var(--midnight);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: var(--midnight);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --popover-foreground: var(--midnight);
+  --primary: var(--midnight);
+  --primary-foreground: var(--canvas);
   --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --secondary-foreground: var(--midnight);
   --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --muted-foreground: oklch(0.5 0.03 260);
+  --accent: var(--amber-brand);
+  --accent-foreground: var(--midnight);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.92 0.01 255);
+  --input: oklch(0.92 0.01 255);
+  --ring: var(--cobalt);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +160,56 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
   }
 }
+
+@utility font-serif { font-family: var(--font-serif); }
+@utility font-sans  { font-family: var(--font-sans); }
+
+@utility glass {
+  background: color-mix(in oklab, white 78%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid color-mix(in oklab, white 60%, transparent);
+}
+@utility glass-dark {
+  background: color-mix(in oklab, var(--midnight) 60%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid color-mix(in oklab, white 12%, transparent);
+}
+
+@utility eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+@utility container-luxe {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@keyframes drift {
+  0%   { transform: translate3d(-10%, 0, 0); }
+  100% { transform: translate3d(110%, -6%, 0); }
+}
+@keyframes float-slow {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-14px); }
+}
+@utility animate-drift     { animation: drift 34s linear infinite; }
+@utility animate-float-slow{ animation: float-slow 7s ease-in-out infinite; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
