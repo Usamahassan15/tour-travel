@@ -77,14 +77,32 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Vantaggio — Luxury Travel, Bespoke Journeys & Concierge Tours" },
+      {
+        name: "description",
+        content:
+          "Vantaggio designs private, unforgettable holidays to 150+ destinations. Curated tour packages, visa assistance and 24/7 concierge support — book with confidence.",
+      },
+      {
+        name: "keywords",
+        content:
+          "luxury travel agency, tour packages, holiday packages, Dubai tours, Maldives, Turkey, Bali, honeymoon packages, visa services, hotel booking",
+      },
+      { name: "theme-color", content: "#0F172A" },
+      { property: "og:site_name", content: "Vantaggio Travel" },
+      { property: "og:title", content: "Vantaggio — Luxury Travel & Bespoke Journeys" },
+      {
+        property: "og:description",
+        content:
+          "Curated luxury tours, hotels, flights and visa assistance across 150+ destinations. 24/7 concierge support.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Vantaggio — Luxury Travel & Bespoke Journeys" },
+      {
+        name: "twitter:description",
+        content: "Curated luxury tours and concierge travel to 150+ destinations.",
+      },
     ],
     links: [
       {
@@ -92,6 +110,31 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "TravelAgency",
+          name: "Vantaggio Travel",
+          description:
+            "Luxury travel agency offering curated tours, holiday packages, visa services and 24/7 concierge.",
+          telephone: "+92 317 5817400",
+          areaServed: "Worldwide",
+          sameAs: [
+            "https://instagram.com/",
+            "https://facebook.com/",
+            "https://linkedin.com/",
+          ],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
