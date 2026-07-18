@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { z } from "zod";
 import { Send } from "lucide-react";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { formatEnquiryMessage, whatsappHref } from "@/lib/whatsapp";
 import { SectionHeading } from "./section-heading";
 
 const schema = z.object({
@@ -45,7 +45,20 @@ export function EnquiryForm() {
       return;
     }
     setErrors({});
-    const url = buildWhatsAppUrl(parsed.data);
+    const d = parsed.data;
+    const url = whatsappHref(
+      formatEnquiryMessage({
+        fullName: d.name,
+        phone: d.phone,
+        email: d.email,
+        destination: d.destination,
+        travelDate: d.travelDate || "Flexible",
+        adults: d.travelers || "—",
+        children: "—",
+        budget: d.budget || "Not specified",
+        message: d.message || undefined,
+      }),
+    );
     window.open(url, "_blank", "noopener,noreferrer");
     setSent(true);
     setValues(initial);
