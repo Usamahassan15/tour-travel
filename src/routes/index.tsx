@@ -14,9 +14,28 @@ import { FAQ } from "@/components/site/faq";
 import { EnquiryForm } from "@/components/site/enquiry-form";
 import { Footer } from "@/components/site/footer";
 import { WhatsAppBubble } from "@/components/site/whatsapp-bubble";
+import { Partners } from "@/components/site/partners";
+import { Newsletter } from "@/components/site/newsletter";
+import { ScrollTop } from "@/components/site/scroll-top";
+
+const TITLE = "Vantaggio | Luxury Travel Agency & Bespoke Tour Packages";
+const DESCRIPTION =
+  "Private, tailor-made holidays to 150+ destinations. Curated luxury tours, hotels, flights, visa assistance and 24/7 concierge care — plan your journey today.";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
+    ],
+  }),
 });
 
 function Index() {
@@ -26,6 +45,7 @@ function Index() {
       <main>
         <Hero />
         <StatsStrip />
+        <Partners />
         <Destinations />
         <Packages />
         <Deals />
@@ -35,10 +55,12 @@ function Index() {
         <Testimonials />
         <Blog />
         <FAQ />
+        <Newsletter />
         <EnquiryForm />
       </main>
       <Footer />
       <WhatsAppBubble />
+      <ScrollTop />
     </div>
   );
 }
