@@ -59,6 +59,7 @@ export function Footer() {
             <a href="#" className="hover:text-white">Privacy</a>
             <a href="#" className="hover:text-white">Terms</a>
             <a href="#" className="hover:text-white">Cookies</a>
+            <Link to="/auth" className="hover:text-white">Team Login</Link>
           </p>
         </div>
       </div>
