@@ -32,7 +32,7 @@ export function EnquiryForm() {
   const set = <K extends keyof FormValues>(k: K, v: string) =>
     setValues((s) => ({ ...s, [k]: v }));
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = schema.safeParse(values);
     if (!parsed.success) {
@@ -46,6 +46,23 @@ export function EnquiryForm() {
     }
     setErrors({});
     const d = parsed.data;
+
+    const { error } = await supabase.from("enquiries").insert({
+      name: d.name,
+      email: d.email,
+      phone: d.phone,
+      destination: d.destination,
+      travel_date: d.travelDate || null,
+      travelers: d.travelers || null,
+      budget: d.budget || null,
+      message: d.message || null,
+    });
+    if (error) {
+      toast.error("We couldn't save your enquiry — please try again.");
+      return;
+    }
+    toast.success("Enquiry received — our concierge will be in touch shortly.");
+
     const url = whatsappHref(
       formatEnquiryMessage({
         fullName: d.name,
