@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, Twitter, MapPin, Mail, Phone } from "lucide-react";
 import { WHATSAPP_DISPLAY } from "@/lib/whatsapp";
 
@@ -59,6 +60,7 @@ export function Footer() {
             <a href="#" className="hover:text-white">Privacy</a>
             <a href="#" className="hover:text-white">Terms</a>
             <a href="#" className="hover:text-white">Cookies</a>
+            <Link to="/auth" className="hover:text-white">Team Login</Link>
           </p>
         </div>
       </div>
