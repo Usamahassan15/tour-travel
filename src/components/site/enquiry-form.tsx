@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { z } from "zod";
 import { Send } from "lucide-react";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import { formatEnquiryMessage, whatsappHref } from "@/lib/whatsapp";
 import { SectionHeading } from "./section-heading";
 
