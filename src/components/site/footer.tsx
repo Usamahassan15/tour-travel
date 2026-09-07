@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, Twitter, MapPin, Mail, Phone } from "lucide-react";
 import { WHATSAPP_DISPLAY } from "@/lib/whatsapp";
 
